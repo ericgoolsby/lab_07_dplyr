@@ -19,7 +19,7 @@ So far in this course, you've learned how to manipulate data frames using logica
       -   For even-numbered questions (through 16), you will use tidyverse functions to accomplish the same task.
       -   This is a little tedious/repetitive! But it's important to understand it works.
 
-For more details on data wrangling with dplyr, see <https://r4ds.had.co.nz/transform.html>.
+For more details on data wrangling with dplyr, see reading <https://r4ds.had.co.nz/transform.html> and RStudio Primer <https://rstudio.cloud/learn/primers/2.2>.
 
 For more details on ggplot2, see <https://r4ds.had.co.nz/data-visualisation.html>.
 
