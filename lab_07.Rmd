@@ -1,0 +1,187 @@
+---
+title: "Lab 07"
+author: "Your Name"
+date: "10/06/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Comparing base R to tidyverse
+
+So far in this course, you've learned how to manipulate data frames using logical subsetting and other related skills. For this lab, you'll be getting a gentle introduction to data wrangling with dplyr (a tidyverse package).
+      -   For odd-numbered questions (through 15), you will use base R (what we've already learned).
+      -   For even-numbered questions (through 16), you will use tidyverse functions to accomplish the same task.
+      -   This is a little tedious/repetitive! But it's important to understand it works.
+
+For more details on data wrangling with dplyr, see <https://r4ds.had.co.nz/transform.html>.
+
+For more details on ggplot2, see <https://r4ds.had.co.nz/data-visualisation.html>.
+
+Please let me know if you spot any errors!
+
+## Assignment
+
+First, load the palmerpenguins package:
+
+```{r}
+library(palmerpenguins)
+```
+
+1. Use the `head` function (base R) to print the first few rows of the `penguins` dataset.
+
+```{r}
+
+```
+
+2. Use the `glimpse` function (tidyverse) to print the first few rows of the `penguins` dataset.
+
+```{r}
+
+```
+
+3. Extract the rows where the `species` is `Chinstrap` (store these results in an object named `dat`). Then, use base R to print the first few rows of `dat`.
+
+```{r}
+
+```
+
+4. Look at slides 1 through 5 on this flipbook example: <https://evamaerey.github.io/data_manipulation/one_stream_wrangle.html>.
+      -   On slide 5, notice how they used `%>%` -- that's just the tidyverse way of passing data into a function.
+            -   The `%>%` operator is called a *pipe*, and when you use the pipe operator, it's called *piping*. 
+      -   Use the `filter` function to extract the rows of `penguins` where the `species` is `Chinstrap`. Store it in an object named `dat2`.
+            -   Hint: your code should look like this: `dat2 <- penguins %>% filter()`. You just have to figure out what to put inside the `filter` function.
+      -   On the next line, use tidyverse to print the first few rows of `dat2`.
+      
+```{r}
+
+```
+      
+5. In `dat`, `species` is the 1st column. Use base R to remove the `species` column from `dat`. Store the results in `dat`, so that `dat` no longer has a `species` column.
+      -   Hint: To remove (instead of subset) a column, use a negative number for the column you are trying to remove.
+      -   Then use base R to print the first few rows of `dat`.
+
+```{r}
+
+```
+
+6. Look at slide 6 from the flipbook linked in problem 4. Use the `select` function to remove the `species` column from `dat2`. Then use tidyverse to print the first few rows of `dat2`.
+
+```{r}
+
+```
+
+7. Use base R (`colnames` function) to rename the 4th column of `dat` (`flipper_length_mm`) to `fliplen`. Then use base R to print the first few rows of `dat`.
+
+```{r}
+
+```
+
+8. Look at slides 7 from the flipbook. Use the `rename` function to rename `flipper_length_mm` to `fliplen` (store the output in `dat2`). Then use tidyverse to print the first few rows of `dat2`.
+
+```{r}
+
+```
+
+9. In base R, you can add a column to a data frame using the `cbind` function. For example: `dat <- cbind(dat, new_column = x)`. This will create a new column in `dat` called `new_column`, and the column will contain whatever `x` is. (Alternatively, you could do `cbind(dat,x)` and then use `colnames(dat)[5] <- ` to  rename the new column.
+      -   Use the `cbind` function to create a new column in `dat` which contains the product of `bill_length` and `bill_depth`. The column should be named `prod`.
+      -   Use base R to print the first few rows of `dat`.
+      
+```{r}
+
+```
+
+10. Look at slide 8-10 from the flipbook. Use the `mutate` function to create a new column in `dat2` named prod, which contains the product of `bill_length` and `bill_depth`.
+      -   Be sure to store the output in `dat2`
+      -   Then print the first few rows of `dat2` using tidyverse.
+
+```{r}
+
+```
+      
+11. Use base R to subset the following columns of `dat`: `bill_length`, `fliplen`, and `prod`. Store the output in `dat`, and use base R to print the first few rows.
+      -   Hint: Use the `c()` function to create either a vector of column numbers OR a character vector with the column names (with quotation marks) to subset these columns.
+
+```{r}
+
+```
+
+12. Look at slide 11 from the flipbook. Use the `select` function to overwrite `dat2` so that it only contains the columns `bill_length`, `fliplen`, and `prod`. Then use tidyverse to print the first few rows of `dat2`.
+      -   Note: you can use the column names (without quotation marks) OR the column numbers.
+
+```{r}
+
+```
+
+13. In base R, we can use the `sort` function to sort a vector either alphabetically or in numerical order.
+      -   For example, `sort(dat$bill_length)` will sort the bill Lengths in the `dat` data frame from lowest to highest.
+      -   You can use the `rev` function to reverse a vector. So `rev(sort(dat$bill_length))` would give you these values from highest to lowest.
+      -   We can use the `order` function to return the vector positions corresponding to the ordering obtained by sort.
+            -   For example, `dat$bill_length[order(dat$bill_length)]` is equivalent to `sort(dat$bill_length)`.
+            -   That's not very useful, but it IS useful in reordering the rows of a data frame -- e.g. `dat[order(x),]`
+      -   Use the `order` function to reorder the rows of dat based on `bill_length`, **from highest to lowest**. Store the results in `dat` and print the first few rows using base R.
+            -   Hint: for highest to lowest ordering, you can use the `rev` function, or you can put a minus sign in front of `dat$bill_length`. Either one will work.
+
+```{r}
+
+```
+
+14. Look at slide 12 from the flipbook. Observe what the `case_when` function does. It's quite interesting! But we're not going to cover it (at least not today). After studying slide 12, move on to slide 13.
+      -   Use the `arrange` function to order `dat2` rows by `bill_length` **from highest to lowest**.
+      -   Store the output in `dat2` and use tidyverse to print the first few rows.
+
+```{r}
+
+```
+
+15. Using base R, subset `dat` to include rows 3 through 25. Store the results in `dat`, and use base R to print the first few rows.
+
+```{r}
+
+```
+
+16. Look at slide 15 from the flipbook, and use the `slice` function to subset rows 3 through 25. Store the results in `dat2`, and use tidyverse to print the first few rows.
+
+```{r}
+
+```
+
+17. Starting with the penguins dataset, perform all of these changes using a single command. (For stylistic purposes, start a new line AFTER each time you use `%>%`)
+      -   At every step, run the code in the console to preview the output to make sure it worked! Then you can add a new `%>%`
+      -   Also, don't store this in an object -- just let the entire object print when you run it
+      -   Use the `filter` function to extract the rows of `penguins` where the `species` is `Chinstrap`.
+      -   Use the `select` function to remove the `species` column
+      -   Use the `rename` function to rename `flipper_length_mm` to `fliplen`
+      -   Use the `mutate` function to create a new column named prod, which contains the product of `bill_length` and `bill_depth`
+      -   Use the `select` function to to only include the columns `bill_length`, `fliplen`, and `prod`.
+      -   Use the `arrange` function to order the rows by `bill_length` from highest to lowest
+      -   Use the `slice` function to subset rows 3 through 25
+
+```{r}
+
+```
+
+18. Now for some ggplot2 practice! Using the `penguins` dataset and `ggplot2`, make a scatterplot of `bill_length` vs `bill_depth`. Color-code the points by `species`, use point shape to specify `island` and make the size of the points proportional to `flipper_length_mm`.
+
+```{r}
+
+```
+
+19. Make the same plot as you did in 18, but this time:
+      -   Don't scale size by `flipper_length_mm`
+      -   Use a different them (anything but `theme_grey()`)
+      -   Add a line (one for each species) -- within the function that plots the line, include the arguments `method = "lm"` and `se = FALSE`
+      -   Make the points transparent (you decide how transparent you want them to be)
+      -   Add a title: "Bill Length vs Bill Width"
+      -   For the x and y labels, remove the underscore after bill, and also add the units (mm) in parentheses
+      
+```{r}
+
+```
+
+Save and Knit the document. Be sure the HTML file successfully renders. Then submit BOTH the .Rmd and the HTML file on Webcourses.
